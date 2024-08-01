@@ -192,7 +192,7 @@ serv00中运行，生成密钥对
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
 ``` 
 打印私钥内容，复制私钥全部内容
-
+```
 cat ~/.ssh/id_rsa
 ```
 复制私钥内容作为SSH_PRIVATE_KEY的值,需要包括全部内容
