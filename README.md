@@ -97,8 +97,11 @@ fi
 
 ```
 #### -设置Cron计划任务执行脚本
+```
 sudo crontab -e
+加入下面任务
 */2 * * * * /home/ubuntu/keep.sh >/dev/null 2>&1
+```
 ---
 ---
 
