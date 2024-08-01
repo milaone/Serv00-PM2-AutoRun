@@ -81,7 +81,7 @@ keep.sh的内容，直接复制粘贴
 URL="https://memos.milaone.app"
 
 # 定义运行脚本的路径
-RUN_SCRIPT="./run.sh"
+RUN_SCRIPT="/home/dino/run.sh"
 
 # 检查服务是否运行
 curl --head --silent --fail $URL > /dev/null
