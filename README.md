@@ -5,11 +5,11 @@
 原库地址https://github.com/kuoihao/Serv00_Auto_Run
 
 
-### 功能
+## 功能
 旨在通过判断Web服务是否运行，否则通过远程方式登录Serv00的ssh运行脚本以恢复PM2快照 
 本项目分三种方式来解决
 
-### 利用vps远程运行serv00中的pm2保活命令
+### 方法一：利用vps远程运行serv00中的pm2保活命令
 
 #### -Serv00中生成密钥对
 ```
