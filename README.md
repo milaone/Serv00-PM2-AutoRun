@@ -77,27 +77,28 @@ chmod +x keep.sh
 keep.sh的内容，直接复制粘贴
 ```
 #!/bin/bash
-# 定义要检测的URL
+
+# 目标URL
 URL="https://memos.milaone.app"
 
-# 定义运行脚本的路径
-RUN_SCRIPT="/home/dino/run.sh"
+# 远程运行的脚本命令
+RUN_SCRIPT="ssh -i .ssh/serv00key dino@s4.serv00.com '/home/dino/run.sh'"
 
 # 检查服务是否运行
 curl --head --silent --fail $URL > /dev/null
 SERVICE_STATUS=$?
+
 if [ $SERVICE_STATUS -eq 0 ]; then
     echo "Service is running."
 else
     echo "Service is not running. Starting the service..."
-    bash $RUN_SCRIPT
+    $RUN_SCRIPT
 fi
 
 ```
 #### -设置Cron计划任务执行脚本
 sudo crontab -e
-*/2 * * * * /home/dino/keep.sh
-
+*/2 * * * * /home/ubuntu/keep.sh >/dev/null 2>&1
 ---
 ---
 
