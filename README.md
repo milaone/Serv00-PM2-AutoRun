@@ -209,11 +209,52 @@ xxxxxxxxxxxxxxxxxxx
 这两行也要包含进来
 
 
-### 3.2fork本仓库到您的github账户下
-### 3.2 配置密钥
+### 3.2 fork本仓库到您的github账户下
+### 3.3 配置密钥
 在fork后的仓库中settings--> Security --> Secrets and variables --> Actions-->New repository secret按钮
 
 Name：SSH_PRIVATE_KEY
 Secret： 这里填刚复制出来的私钥
 
-Add secret
+Add secret 按钮提交
+
+### 3.4 修改仓库中
+Serv00-PM2-Autorun/.github/workflows目录下的main.yml
+其中需要修改的地方我都进行注释。
+```
+name: autorun
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 5分钟运行一次
+    - cron: '0/5 * * * *'
+    
+
+jobs:
+  ssh-and-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Check if service is running
+      id: check_service
+      run: |
+        if curl --head --silent --fail https://memos.milaone.app > /dev/null; then #这里改成你的Web服务的地址
+          echo "service_status=running" >> $GITHUB_ENV
+        else
+          echo "service_status=not_running" >> $GITHUB_ENV
+        fi
+
+    - name: Run script on remote server if service is not running
+      if: env.service_status == 'not_running'
+      run: ssh -o StrictHostKeyChecking=no dino@s4.serv00.com "/home/dino/run.sh" #这里改成你的用户名@你的ssh服务器地址，以及/home/你的用户名/run.sh
+```
+
+### 3.5 打开Actions中的自动工作流即可
