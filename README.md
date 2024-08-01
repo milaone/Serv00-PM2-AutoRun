@@ -1,6 +1,11 @@
 # Serv00-PM2-Autorun
 
+本项目借鉴了kuoihao仓库Serv00_Auto_Run的思路利用自动工作流进行远程运行脚本
 
+原库地址https://github.com/kuoihao/Serv00_Auto_Run
+
+
+### 功能
 旨在通过判断Web服务是否运行，否则通过远程方式登录Serv00的ssh运行脚本以恢复PM2快照 
 本项目分三种方式来解决
 
@@ -9,9 +14,12 @@
 #### -Serv00中生成密钥对
 ```
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
-
 ```
-
+#### -查看公钥并添加到
+    
+```
+cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys
+```
 
 
 
