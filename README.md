@@ -12,6 +12,22 @@
 ## 方法一：利用vps远程运行serv00中的pm2保活命令
 
 ### Serv00服务器端
+#### 在Serv00中编写恢复快照脚本
+```
+cd ~
+touch run.sh
+chmod +x run.sh
+
+##写入命令（或者自己复制进去）：
+cat << 'EOF' > run.sh
+#!/bin/sh
+~/.npm-global/bin/pm2 kill
+/home/dino/.npm-global/bin/pm2 resurrect >/dev/null 2>&1
+sleep 10
+/home/dino/.npm-global/bin/pm2 restart all
+~/.npm-global/bin/pm2 save
+EOF
+```
 #### -Serv00中生成密钥对
 ```
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
@@ -43,6 +59,16 @@ xxxxxxxxxxxxxxxxxxx
 
 这两行也要包含进来
 ### VPS端
+#### -配置私钥
+```
+cd ~
+nano .ssh/serv00key
+#把私钥中内容粘贴进来，保存退出
+chmod 600 .ssh/serv00key
+```
+#### -设置
+
+
 
 
 ### 利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
