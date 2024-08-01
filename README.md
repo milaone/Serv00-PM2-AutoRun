@@ -42,7 +42,7 @@ cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys
 ```
 cat ~/.ssh/id_rsa
 ```
-复制私钥内容作为SSH_PRIVATE_KEY的值,需要包括全部内容
+复制私钥内容,需要包括全部内容
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----
 xxxxxxxxxxxxxxxxxxx
