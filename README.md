@@ -9,7 +9,7 @@
 旨在通过判断Web服务是否运行，否则通过远程方式登录Serv00的ssh运行脚本以恢复PM2快照 
 本项目分三种方式来解决
 
-## 方法一：利用vps远程运行serv00中的pm2保活命令
+## 方法一：利用vps远程监控并保活serv00中的PM2
 
 ### Serv00服务器端
 #### 在Serv00中编写恢复快照脚本
@@ -99,14 +99,27 @@ fi
 #### -设置Cron计划任务执行脚本
 ```
 sudo crontab -e
-加入下面任务
+#加入下面任务，keep.sh文件完整路径
 */2 * * * * /home/ubuntu/keep.sh >/dev/null 2>&1
 ```
 ---
 ---
 
-### 方法二：利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
+## 方法二：利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
+整体思路跟方法一是一样的，只是openwrt中的ssh是dropbear提供的，它不能使用serv00生成的证书
+其实说这个方法，我就是为了说一下openwrt下的ssh是特殊的，大家注意一下
+#### -openwrt中生成密钥对
+```
+dropbearkey -f ~/.ssh/id_dropbear -t rsa -s 2048
+```
+默认私钥就已经保存到了/root/.ssh/id_dropbear中了，后面我们直接使用即可
+
+显示公钥就出现在屏幕中，我们复制下来，
+
+#### -Serv00中添加公钥
+编辑~/.ssh/authorized_keys文件，粘贴在文件末尾即可
+
+#### 其他部分同方法一的脚本一样，只是注意对应相应证书文件、脚本文件的目录即可
 
 
-
-### 利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
+## 利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
