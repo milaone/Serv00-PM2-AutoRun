@@ -142,7 +142,7 @@ EOF
 ```
 
 ### 2.2 下面部分OpenWrt中创建脚本，添加crontab计划任务
-#### -远程探测、PM2恢复快照脚本
+#### 2.2.1 远程探测、PM2恢复快照脚本
 
 ```
 cd ~
@@ -173,14 +173,16 @@ else
 fi
 
 ```
-#### -设置Cron计划任务执行脚本
+#### 2.2.2 设置Cron计划任务执行脚本
 ```
 crontab -e
 #加入下面任务，keep.sh文件完整路径
 */2 * * * * /root/keep.sh >/dev/null 2>&1
+```
 
 ---
 ---
+
 
 ## 3. 方法三：利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
 
@@ -190,7 +192,7 @@ serv00中运行，生成密钥对
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
 ``` 
 打印私钥内容，复制私钥全部内容
-```
+
 cat ~/.ssh/id_rsa
 ```
 复制私钥内容作为SSH_PRIVATE_KEY的值,需要包括全部内容
