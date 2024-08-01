@@ -73,6 +73,7 @@ chmod 600 .ssh/serv00key
 cd ~
 touch keep.sh
 chmod +x keep.sh
+
 ```
 
 keep.sh的内容，直接复制粘贴
