@@ -217,10 +217,10 @@ xxxxxxxxxxxxxxxxxxx
 ### 3.2 fork本仓库到您的github账户下
 ### 3.3 配置密钥
 在fork后的仓库中settings--> Security --> Secrets and variables --> Actions-->New repository secret按钮
-
+```
 Name：SSH_PRIVATE_KEY
 Secret： 这里填刚复制出来的私钥
-
+```
 Add secret 按钮提交
 
 ### 3.4 修改仓库中
