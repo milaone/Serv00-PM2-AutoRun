@@ -6,7 +6,7 @@
 
 ### 利用vps远程运行serv00中的pm2保活命令
 
-#### Serv00中生成密钥对
+#### -Serv00中生成密钥对
 ```
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
 
