@@ -6,6 +6,13 @@
 
 ### 利用vps远程运行serv00中的pm2保活命令
 
+#### Serv00中生成密钥对
+```
+ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
+
+```
+
+
 
 
 ### 利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
