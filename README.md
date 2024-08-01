@@ -1,4 +1,4 @@
-# Serv00-PM2-Autorun
+# Serv00-PM2-AutoRun
 
 本项目借鉴了kuoihao仓库Serv00_Auto_Run的思路利用自动工作流进行远程运行脚本
 
@@ -9,7 +9,7 @@
 旨在通过判断Web服务是否运行，否则通过远程方式登录Serv00的ssh运行脚本以恢复PM2快照 
 本项目分三种方式来解决
 
-## 1.方法一：利用vps远程监控并保活serv00中的PM2
+## 1.方法一：利用vps远程监控,并保活serv00中的PM2
 
 ### 1.1 Serv00服务器端
 #### 1.1.1在Serv00中编写PM2恢复快照脚本
@@ -19,15 +19,15 @@ touch run.sh
 chmod +x run.sh
 
 
-##写入命令（或者自己复制进去）：
-cat << 'EOF' > run.sh
+#run.sh中粘贴下面脚本
+
 #!/bin/sh
 ~/.npm-global/bin/pm2 kill
 /home/dino/.npm-global/bin/pm2 resurrect >/dev/null 2>&1
 sleep 10
 /home/dino/.npm-global/bin/pm2 restart all
 ~/.npm-global/bin/pm2 save
-EOF
+
 ```
 #### 1.1.2 Serv00中生成密钥对
 ```
