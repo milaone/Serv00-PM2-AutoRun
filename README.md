@@ -123,6 +123,42 @@ dropbearkey -f ~/.ssh/id_dropbear -t rsa -s 2048
 编辑~/.ssh/authorized_keys文件，粘贴在文件末尾即可
 
 #### 其他部分同方法一的脚本一样，只是注意对应相应证书文件、脚本文件的目录即可
+### OpenWrt中创建脚本，添加crontab计划任务
+#### -远程探测、PM2恢复快照脚本
 
+```
+cd ~
+touch keep.sh
+chmod +x keep.sh
+
+```
+
+keep.sh的内容，直接复制粘贴
+```
+#!/bin/bash
+
+# 目标URL
+URL="https://memos.milaone.app"
+
+# 远程运行的脚本命令
+RUN_SCRIPT="ssh -i /root/.ssh/id_dropbear dino@s4.serv00.com '/home/dino/run.sh'"
+
+# 检查服务是否运行
+curl --head --silent --fail $URL > /dev/null
+SERVICE_STATUS=$?
+
+if [ $SERVICE_STATUS -eq 0 ]; then
+    echo "Service is running."
+else
+    echo "Service is not running. Starting the service..."
+    $RUN_SCRIPT
+fi
+
+```
+#### -设置Cron计划任务执行脚本
+```
+sudo crontab -e
+#加入下面任务，keep.sh文件完整路径
+*/2 * * * * /root/keep.sh >/dev/null 2>&1
 
 ## 利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
