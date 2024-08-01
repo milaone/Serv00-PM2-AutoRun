@@ -72,9 +72,10 @@ chmod 600 .ssh/serv00key
 cd ~
 touch keep.sh
 chmod +x keep.sh
+```
 
-##写入命令（或者自己复制进去）：
-cat << 'EOF' > keep.sh
+keep.sh的内容，直接复制粘贴
+```
 #!/bin/bash
 # 定义要检测的URL
 URL="https://memos.milaone.app"
@@ -91,7 +92,7 @@ else
     echo "Service is not running. Starting the service..."
     bash $RUN_SCRIPT
 fi
-EOF
+
 ```
 
 
