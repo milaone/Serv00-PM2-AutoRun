@@ -20,13 +20,27 @@ ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
 ```
 cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys
 ```
-#### -打印私钥内容，复制
+#### -打印私钥内容，复制私钥全部内容
 ```
 cat ~/.ssh/id_rsa
 ```
-复制私钥内容作为SSH_PRIVATE_KEY的值,需要包括
+复制私钥内容作为SSH_PRIVATE_KEY的值,需要包括全部内容
+```
 -----BEGIN OPENSSH PRIVATE KEY-----
------END OPENSSH PRIVATE KEY-----这两行
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxx
+-----END OPENSSH PRIVATE KEY-----
+```
+
+- -----BEGIN OPENSSH PRIVATE KEY-----
+- -----END OPENSSH PRIVATE KEY-----
+
+这两行也要包含进来
 
 
 ### 利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
