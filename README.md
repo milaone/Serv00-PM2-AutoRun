@@ -94,11 +94,14 @@ else
 fi
 
 ```
+#### -设置Cron计划任务执行脚本
+sudo crontab -e
+*/2 * * * * /home/dino/keep.sh
 
+---
+---
 
-
-
-### 利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
+### 方法二：利用openwrt远程check https://memos.milaone.app 的运行状态，出错就ssh登录Serv00的ssh运行脚本
 
 
 
