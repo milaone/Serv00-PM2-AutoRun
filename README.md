@@ -66,7 +66,33 @@ nano .ssh/serv00key
 #把私钥中内容粘贴进来，保存退出
 chmod 600 .ssh/serv00key
 ```
-#### -设置
+#### -远程探测、PM2恢复快照脚本
+
+```
+cd ~
+touch keep.sh
+chmod +x keep.sh
+
+##写入命令（或者自己复制进去）：
+cat << 'EOF' > keep.sh
+#!/bin/bash
+# 定义要检测的URL
+URL="https://memos.milaone.app"
+
+# 定义运行脚本的路径
+RUN_SCRIPT="./run.sh"
+
+# 检查服务是否运行
+curl --head --silent --fail $URL > /dev/null
+SERVICE_STATUS=$?
+if [ $SERVICE_STATUS -eq 0 ]; then
+    echo "Service is running."
+else
+    echo "Service is not running. Starting the service..."
+    bash $RUN_SCRIPT
+fi
+EOF
+```
 
 
 
