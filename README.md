@@ -130,15 +130,15 @@ touch run.sh
 chmod +x run.sh
 
 
-##写入命令（或者自己复制进去）：
-cat << 'EOF' > run.sh
+#把下面代码粘贴进去
+
 #!/bin/sh
 ~/.npm-global/bin/pm2 kill
 /home/dino/.npm-global/bin/pm2 resurrect >/dev/null 2>&1
 sleep 10
 /home/dino/.npm-global/bin/pm2 restart all
 ~/.npm-global/bin/pm2 save
-EOF
+
 ```
 
 ### 2.2 下面部分OpenWrt中创建脚本，添加crontab计划任务
@@ -151,7 +151,7 @@ chmod +x keep.sh
 
 ```
 
-keep.sh的内容，直接复制粘贴
+#keep.sh的内容，直接粘贴进去
 ```
 #!/bin/bash
 
@@ -177,7 +177,7 @@ fi
 ```
 crontab -e
 #加入下面任务，keep.sh文件完整路径
-*/2 * * * * /root/keep.sh >/dev/null 2>&1
+*/2 * * * * sh /root/keep.sh >/dev/null 2>&1
 ```
 
 ---
