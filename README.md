@@ -179,6 +179,9 @@ crontab -e
 #加入下面任务，keep.sh文件完整路径
 */2 * * * * /root/keep.sh >/dev/null 2>&1
 
+---
+---
+
 ## 3. 方法三：利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
 
 ### 3.1 serv00生成密钥对，并且拿到私钥
