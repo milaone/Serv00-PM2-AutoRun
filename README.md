@@ -203,11 +203,17 @@ sleep 10
 ~/.npm-global/bin/pm2 save
 
 ```
-### 3.1 serv00生成密钥对，并且拿到私钥
+### 3.1 serv00生成密钥对，添加公钥到服务器、并且拿到私钥
 serv00中运行，生成密钥对
 ```
 ssh-keygen -t rsa -b 4096 -C "dino@milaone.app"
 ``` 
+将公钥并添加到authorized_keys中
+    
+```
+cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys
+```
+
 打印私钥内容，复制私钥全部内容
 ```
 cat ~/.ssh/id_rsa
