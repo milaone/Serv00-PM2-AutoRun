@@ -186,6 +186,23 @@ crontab -e
 
 ## 3. 方法三：利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
 
+#### 3.0 在Serv00中编写PM2恢复快照脚本
+```
+cd ~
+touch run.sh
+chmod +x run.sh
+
+
+#run.sh中粘贴下面脚本
+
+#!/bin/sh
+~/.npm-global/bin/pm2 kill
+/home/dino/.npm-global/bin/pm2 resurrect >/dev/null 2>&1
+sleep 10
+/home/dino/.npm-global/bin/pm2 restart all
+~/.npm-global/bin/pm2 save
+
+```
 ### 3.1 serv00生成密钥对，并且拿到私钥
 serv00中运行，生成密钥对
 ```
@@ -212,7 +229,6 @@ xxxxxxxxxxxxxxxxxxx
 - -----BEGIN OPENSSH PRIVATE KEY-----
 - -----END OPENSSH PRIVATE KEY-----
 这两行也要包含进来
-
 
 ### 3.2 fork本仓库到您的github账户下
 ### 3.3 配置密钥
