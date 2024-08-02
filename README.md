@@ -186,7 +186,7 @@ crontab -e
 
 ## 3. 方法三：利用github的Actions中自动工作流脚本每5分钟check一下 https://memos.milaone.app 的运行状态，出错就ssh登录运行脚本
 
-#### 3.0 在Serv00中编写PM2恢复快照脚本
+### 3.0 在Serv00中编写PM2恢复快照脚本
 ```
 cd ~
 touch run.sh
