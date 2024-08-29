@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # 5分钟运行一次
-    - cron: '0/5 * * * *'
+    - cron: '0/30 * * * *'
     
 
 jobs:
